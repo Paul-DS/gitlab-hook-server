@@ -17,14 +17,17 @@ catch(e) {
 app.use(bodyParser.json());
 
 app.post('/event', (req, res) => {
-  console.log(req.body);
   if (!req.body || !req.body.object_kind || !req.body.repository || !req.body.repository.name) {
     return res.sendStatus(400);
   }
 
   console.log('Receive event ' + req.body.object_kind + ' for repository ' + req.body.repository.name);
 
-  var specificConf = config.hooks.find(hook => (!hook.event || hook.event == req.body.object_kind) &&  (!hook.repository || hook.repository == req.body.repository.name));
+  var specificConf = config.hooks.find(hook =>
+    (!hook.token || hook.token == req.headers['x-gitlab-token'])
+    && (!hook.event || hook.event == req.body.object_kind)
+    && (!hook.repository || hook.repository == req.body.repository.name)
+  );
 
   if (specificConf) {
     console.log('Executing ' + specificConf.script + '...');
