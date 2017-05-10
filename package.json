@@ -6,8 +6,21 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Paul-DS/gitlab-hook-server.git"
+  },
+  "keywords": [
+    "gitlab",
+    "hooks"
+    "deployment"
+  ],
+  "author": "Paul-DS",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/Paul-DS/gitlab-hook-server/issues"
+  },
+  "homepage": "https://github.com/Paul-DS/gitlab-hook-server/",
   "dependencies": {
     "body-parser": "^1.17.1",
     "express": "^4.15.2"
