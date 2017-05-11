@@ -29,7 +29,7 @@ Example of a configuration file :
       "repository": "my-gitlab-repository",
       "event": "push",
       "token": "my-gitlab-token",
-      "script": "sh /home/user/deploy.sh 'firstParam' '${after}' '${repository.name}'"
+      "command": "sh /home/user/deploy.sh 'firstParam' '${after}' '${repository.name}'"
     }
   ]
 }
@@ -37,10 +37,10 @@ Example of a configuration file :
 
 - **port**: The port on which the server is gonna be started
 - **hooks**: List of hooks that you want to bind
-  - **repository**: Name of the repository on which the script must be bound (optional. if null, the script will be executed on events of all repositories.
-  - **event**: Name of the event on which the script will be executed (see the possible values on the [gitlab documentation](https://gitlab.com/help/user/project/integrations/webhooks)) (optional. if null, the script will be executed on all events)
+  - **repository**: Name of the repository on which the command must be bound (optional. if null, the command will be executed on events of all repositories.
+  - **event**: Name of the event on which the command will be executed (see the possible values on the [gitlab documentation](https://gitlab.com/help/user/project/integrations/webhooks)) (optional. if null, the command will be executed on all events)
   - **token**: The gitlab token define in the gitlab configuration (see gitlab configuration part below) (optional)
-  - **script**: The command to execute when the hook is triggered. `${tokens}` will be replaced by values from the request body sent by [Gitlab](https://gitlab.com/help/user/project/integrations/webhooks#push-events).
+  - **command**: The command to execute when the hook is triggered. `${tokens}` will be replaced by values from the request body sent by [Gitlab](https://gitlab.com/help/user/project/integrations/webhooks#push-events).
 
 ## GitLab Configuration
 

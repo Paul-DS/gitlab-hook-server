@@ -37,8 +37,8 @@ app.post('/event', (req, res) => {
     && (!hook.repository || hook.repository == req.body.repository.name)
   );
 
-  if (specificConf && specificConf.script) {
-    var cmd = specificConf.script.replace(/\${([^}]+)}/g, (match, path) => (deep_value(req.body, path) || ''));
+  if (specificConf && specificConf.command) {
+    var cmd = specificConf.command.replace(/\${([^}]+)}/g, (match, path) => (deep_value(req.body, path) || ''));
     console.log('Executing ' + cmd + ' ...');
     exec(cmd, (err, stdout, stderr) => {
       console.log(cmd + ' executed');
