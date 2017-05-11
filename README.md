@@ -29,7 +29,7 @@ Example of a configuration file :
       "repository": "my-gitlab-repository",
       "event": "push",
       "token": "my-gitlab-token",
-      "command": "sh /home/user/deploy.sh 'firstParam' '${after}' '${repository.name}'"
+      "command": "sh /home/user/deploy.sh 'firstParam' '${after}' '${repository.name}' --user='${user_name}'"
     }
   ]
 }
