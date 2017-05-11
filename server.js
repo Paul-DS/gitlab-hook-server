@@ -4,6 +4,14 @@ var exec = require('child_process').exec;
 
 var app = express();
 
+function deep_value (obj, path) {
+  for (var i = 0, path = path.split('.'), len = path.length; i < len; i++) {
+    if (obj[path[i]] === undefined) return;
+    obj = obj[path[i]];
+  };
+  return obj;
+}
+
 console.log("Starting server...");
 
 try {
@@ -29,10 +37,11 @@ app.post('/event', (req, res) => {
     && (!hook.repository || hook.repository == req.body.repository.name)
   );
 
-  if (specificConf) {
-    console.log('Executing ' + specificConf.script + '...');
-    exec(specificConf.script, (err,stdout,stderr) => {
-      console.log(specificConf.script + ' executed');
+  if (specificConf && specificConf.script) {
+    var cmd = specificConf.script.replace(/\${([^}]+)}/g, (match, path) => (deep_value(req.body, path) || ''));
+    console.log('Executing ' + cmd + ' ...');
+    exec(cmd, (err, stdout, stderr) => {
+      console.log(cmd + ' executed');
     });
 
     res.sendStatus(200);
