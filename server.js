@@ -41,7 +41,7 @@ if (config.logfile) {
   logger = fs.createWriteStream(config.logfile, { flags: 'a' });
 }
 
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: '1mb' }));
 
 app.post('/event', (req, res) => {
   if (!req.body || !req.body.object_kind || !req.body.repository || !req.body.repository.name) {
