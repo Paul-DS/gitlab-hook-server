@@ -24,6 +24,7 @@ Example of a configuration file :
 ```
 {
   "port": 9000,
+  "logfile": "/home/user/gitlab-hook-server.log",
   "hooks": [
     {
       "repository": "my-gitlab-repository",
@@ -36,6 +37,7 @@ Example of a configuration file :
 ```
 
 - **port**: The port on which the server is gonna be started
+- **logfile**: The file in which the logs will be written. Can be a relative path (from the server folder) or an absolute path. (optional. if null, the logs will be displayed in the console)
 - **hooks**: List of hooks that you want to bind
   - **repository**: Name of the repository on which the command must be bound (optional. if null, the command will be executed on events of all repositories.
   - **event**: Name of the event on which the command will be executed (see the possible values on the [gitlab documentation](https://gitlab.com/help/user/project/integrations/webhooks)) (optional. if null, the command will be executed on all events)
